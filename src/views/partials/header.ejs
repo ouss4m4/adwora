@@ -1,3 +1,66 @@
-<nav>
-  <h1 class="text-xl text-red-500">My App</h1>
-</nav>
+<div class="h-13 sticky left-0 top-0 z-20 flex flex-shrink-0 bg-white shadow">
+  <div class="relative flex flex-1 justify-between px-2 pb-1.5 pt-3">
+    <!--Search Section-->
+    <div class="ml-[1.8%] flex flex-1">
+      <div class="flex w-full md:ml-0">
+        <label for="global-search-field" class="sr-only">Search</label>
+        <div class="relative w-full text-gray-400 focus-within:text-gray-600">
+          <div
+            class="pointer-events-none absolute inset-y-0 left-0 flex items-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="13.882"
+              height="13.882"
+              viewBox="0 0 13.882 13.882"
+            >
+              <path
+                id="Search_Icon"
+                data-name="Search Icon"
+                d="M11.019,9.743a5.88,5.88,0,0,0,1.215-3.621A6.09,6.09,0,0,0,6.16,0,6.165,6.165,0,0,0,0,6.122a6.165,6.165,0,0,0,6.16,6.122A5.784,5.784,0,0,0,9.8,11.036l2.6,2.587a.842.842,0,0,0,1.215,0,.83.83,0,0,0,0-1.207Zm-4.859.69A4.357,4.357,0,0,1,1.735,6.122a4.425,4.425,0,0,1,8.85,0A4.357,4.357,0,0,1,6.16,10.433Z"
+                fill="#9eabc8"
+              />
+            </svg>
+          </div>
+          <input
+            class="block h-[38px] w-full border-transparent py-2 pl-6 pr-3 text-sm text-gray-900 placeholder-gray-500 focus:border-transparent focus:placeholder-[#A8B2C7] focus:outline-none focus:ring-0 sm:text-sm"
+            placeholder="Search"
+            type="search"
+            name="search"
+            id="global-search-field"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ml-4 flex items-center space-x-3 md:ml-6">
+    <div class="relative hidden sm:flex">
+      <button
+        type="button"
+        class="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        wire:click="$emit('toggleNotificationsDrawer')"
+      >
+        <span class="sr-only">View notifications</span>
+        <svg
+          class="h-3 w-3"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 16 16"
+        >
+          <path
+            id="Notification_Icon"
+            data-name="Notification Icon"
+            d="M6,14h4a2,2,0,1,1-4,0ZM1,13a1,1,0,0,1,0-2h.5A4.353,4.353,0,0,0,3,8V5A4.952,4.952,0,0,1,8,0a4.951,4.951,0,0,1,5,5V8a4.351,4.351,0,0,0,1.5,3H15a1,1,0,0,1,0,2Z"
+            fill="#9eabc8"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div
+    class="absolute left-0 right-0 top-0 h-2 w-[100%] overflow-hidden bg-red-600"
+  >
+    <div
+      class="primary-gradient absolute -left-[2%] -right-[2%] top-0 h-2 w-[105%]"
+    ></div>
+  </div>
+</div>

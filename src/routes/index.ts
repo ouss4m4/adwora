@@ -2,8 +2,13 @@ import { Router } from "express";
 
 const router = Router();
 
-// Home route
+// redirect
 router.get("/", (req, res) => {
+  res.redirect("/dashboard");
+});
+
+// Home route
+router.get("/dashboard", (req, res) => {
   res.render("dashboard", { title: "Dashboard | Adwora" });
 });
 

@@ -2,3 +2,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.primary-gradient {
+  background: transparent linear-gradient(90deg, #a247ed 0%, #00d2e7 100%) 0 0
+    no-repeat padding-box;
+  background-color: #b55bff;
+  border-radius: 6px;
+  opacity: 1;
+}

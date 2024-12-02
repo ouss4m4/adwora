@@ -1,7 +1,26 @@
-<aside>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/clients">Clients</a></li>
-    <li><a href="/users">Users</a></li>
-  </ul>
+<aside class="h-full">
+  <div class="flex h-full flex-col bg-[#0A2665]">
+    <div class="flex justify-center bg-[#001C5A]">
+      <div class="w-full px-8 py-4">
+        <a href="dashboard" class="mb-4 block w-auto">
+          <%- include('adwora-logo') %>
+        </a>
+      </div>
+    </div>
+    <aside class="">
+      <ul class="text-white">
+        <li class="mb-2">
+          <div class="bg-white pl-4">
+            <a href="/dashboard"> Dashboard </a>
+          </div>
+        </li>
+        <li class="mb-2">
+          <div class="pl-4"><a href="/clients">Clients</a></div>
+        </li>
+        <li class="mb-2">
+          <div class="pl-4"><a href="/users">Users</a></div>
+        </li>
+      </ul>
+    </aside>
+  </div>
 </aside>
