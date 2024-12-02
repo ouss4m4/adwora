@@ -1,0 +1,30 @@
+{
+  "name": "adwora",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"ts-node-dev src/app.ts\" \"npm run watch:css\"",
+    "build:css": "tailwindcss -i ./src/styles/tailwind.css -o ./public/css/styles.css",
+    "watch:css": "tailwindcss -i ./src/styles/tailwind.css -o ./public/css/styles.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "autoprefixer": "^10.4.20",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "express-ejs-layouts": "^2.5.1",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/express-ejs-layouts": "^2.5.4",
+    "@types/node": "^22.10.1",
+    "concurrently": "^9.1.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.2"
+  }
+}
