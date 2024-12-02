@@ -7,20 +7,24 @@
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
-    <header>
-      <%- include('./partials/header') %>
-      <!-- Include header -->
-    </header>
+    <div class="flex">
+      <div class="w-48">
+        <aside>
+          <%- include('./partials/sidebar') %>
+          <!-- Include sidebar -->
+        </aside>
+      </div>
+      <div>
+        <header>
+          <%- include('./partials/header') %>
+          <!-- Include header -->
+        </header>
 
-    <div class="container">
-      <aside>
-        <%- include('./partials/sidebar') %>
-        <!-- Include sidebar -->
-      </aside>
-      <main>
-        <%- body %>
-        <!-- Dynamic view content -->
-      </main>
+        <main>
+          <%- body %>
+          <!-- Dynamic view content -->
+        </main>
+      </div>
     </div>
   </body>
 </html>
