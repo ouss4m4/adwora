@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"ts-node-dev src/app.ts\" \"npm run watch:css\"",
+    "start": "concurrently \"ts-node-dev --env-file=.env src/app.ts\" \"npm run watch:css\"",
     "build:css": "tailwindcss -i ./src/styles/tailwind.css -o ./public/css/styles.css",
     "watch:css": "tailwindcss -i ./src/styles/tailwind.css -o ./public/css/styles.css --watch"
   },
@@ -16,6 +16,7 @@
     "ejs": "^3.1.10",
     "express": "^4.21.1",
     "express-ejs-layouts": "^2.5.1",
+    "mongodb": "^6.11.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.15"
   },
