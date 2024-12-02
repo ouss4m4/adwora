@@ -1,25 +1,16 @@
-import { Router } from "express";
+import { Router } from 'express'
+import { clientRouter } from './client'
+import { userRouter } from './users'
+const router = Router()
 
-const router = Router();
+router.get('/', (req, res) => {
+  res.redirect('/dashboard')
+})
 
-// redirect
-router.get("/", (req, res) => {
-  res.redirect("/dashboard");
-});
+router.get('/dashboard', (req, res) => {
+  res.render('dashboard', { title: 'Dashboard | Adwora' })
+})
 
-// Home route
-router.get("/dashboard", (req, res) => {
-  res.render("dashboard", { title: "Dashboard | Adwora" });
-});
-
-// Client Route
-router.get("/clients", (req, res) => {
-  res.render("clients", { title: "Clients Page" });
-});
-
-// User Route
-router.get("/users", (req, res) => {
-  res.render("users", { title: "Users Page" });
-});
-
-export default router;
+router.use('/clients', clientRouter)
+router.use('/users', userRouter)
+export default router

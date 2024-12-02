@@ -1,0 +1,34 @@
+<div class="flex h-full w-full flex-col items-center justify-center">
+  <h1 class="my-6 text-2xl">Create Client</h1>
+  <div class="bg-white p-8 shadow-md">
+    <form action="/clients" method="POST" class="grid grid-cols-3 gap-4">
+      <label class="col-span-1" for="name">Name:</label>
+      <input
+        class="border-1 col-span-2 mb-4 w-full appearance-none rounded-md border-gray-300 px-4 py-2.5 text-sm leading-tight text-[#001C5B] shadow-sm focus:outline-none"
+        type="text"
+        id="name"
+        name="name"
+        required
+      />
+
+      <label class="col-span-1" for="email">Email:</label>
+      <input
+        class="border-1 col-span-2 mb-4 w-full appearance-none rounded-md border-gray-300 px-4 py-2.5 text-sm leading-tight text-[#001C5B] shadow-sm focus:outline-none"
+        type="email"
+        id="email"
+        name="email"
+        required
+      />
+
+      <label class="col-span-1" for="phone">Phone:</label>
+      <input
+        class="border-1 col-span-2 mb-4 w-full appearance-none rounded-md border-gray-300 px-4 py-2.5 text-sm leading-tight text-[#001C5B] shadow-sm focus:outline-none"
+        type="text"
+        id="phone"
+        name="phone"
+      />
+
+      <button type="submit" class="col-span-3">Create Client</button>
+    </form>
+  </div>
+</div>
