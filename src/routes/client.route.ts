@@ -1,7 +1,5 @@
 import { Router } from 'express'
-import { collections } from '../db/services'
-import Client, { IClient } from '../models/client.model'
-import { ObjectId } from 'mongodb'
+import Client from '../models/client.model'
 
 const router = Router()
 
