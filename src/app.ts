@@ -3,6 +3,7 @@ import path from 'path'
 import routes from './routes'
 import expressLayouts from 'express-ejs-layouts'
 import { connectToDatabase } from './db/db'
+import methodOverride from 'method-override'
 
 const app = express()
 const PORT = process.env.PORT
@@ -19,6 +20,7 @@ app.use(express.json())
 
 // BODY PARSERS
 app.use(express.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 // Use routes
 app.use(routes)
 

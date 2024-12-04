@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { clientRouter } from './client.route'
-import { userRouter } from './users'
+import { userRouter } from './user.route'
 const router = Router()
 
 router.get('/', (req, res) => {
