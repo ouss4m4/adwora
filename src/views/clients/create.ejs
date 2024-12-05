@@ -1,34 +1,61 @@
 <div class="flex h-full w-full flex-col items-center justify-center">
   <h1 class="my-6 text-2xl">Create Client</h1>
   <div class="bg-white p-8 shadow-md">
+    <% if (errors && errors.root) { %>
+      <span class="text-red-500"><%= errors.root %></span>
+    <% } %>
+
     <form action="/clients" method="POST" class="grid grid-cols-3 gap-4">
+      
       <label class="col-span-1" for="name">Name:</label>
-      <input
-        class="border-1 col-span-2 mb-4 w-full appearance-none rounded-md border-gray-300 px-4 py-2.5 text-sm leading-tight text-[#001C5B] shadow-sm focus:outline-none"
-        type="text"
-        id="name"
-        name="name"
-        required
-      />
+      <div class="col-span-2">
+        <input
+          class="border-1 mb-4 w-full appearance-none rounded-md border-gray-300 px-4 py-2.5 text-sm leading-tight text-[#001C5B] shadow-sm focus:outline-none"
+          type="text"
+          id="name"
+          name="name"
+          value="<%= oldData.name || '' %>"  
+          required
+        />
+        <% if (errors && errors.name) { %>
+          <span class="text-red-500"><%= errors.name %></span>
+        <% } %>
+      </div>
 
       <label class="col-span-1" for="email">Email:</label>
-      <input
+      <div class="col-span-2">
+
+        <input
         class="border-1 col-span-2 mb-4 w-full appearance-none rounded-md border-gray-300 px-4 py-2.5 text-sm leading-tight text-[#001C5B] shadow-sm focus:outline-none"
         type="email"
         id="email"
         name="email"
+        value="<%= oldData.email || '' %>"
         required
-      />
+        />
+        <% if (errors && errors.email) { %>
+          <span class="text-red-500"><%= errors.email %></span>
+        <% } %>
+      </div>
 
       <label class="col-span-1" for="phone">Phone:</label>
-      <input
+      <div class="col-span-2">
+
+        <input
         class="border-1 col-span-2 mb-4 w-full appearance-none rounded-md border-gray-300 px-4 py-2.5 text-sm leading-tight text-[#001C5B] shadow-sm focus:outline-none"
         type="text"
         id="phone"
         name="phone"
-      />
+        value="<%= oldData.phone || '' %>"
+        />
+        <% if (errors && errors.phone) { %>
+          <span class="text-red-500"><%= errors.phone %></span>
+        <% } %>
+      </div>
 
       <button type="submit" class="col-span-3">Create Client</button>
     </form>
+
+    
   </div>
 </div>

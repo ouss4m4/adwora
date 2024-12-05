@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import Client from '../models/client.model'
+import { createClient } from '../controllers/client/create.controller'
 
 const router = Router()
 
@@ -17,7 +18,11 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/create', (req, res) => {
-  res.render('clients/create', { title: 'Create Client' })
+  res.render('clients/create', {
+    title: 'Create Client',
+    errors: {},
+    oldData: {},
+  })
 })
 
 router.get('/:id/edit', async (req, res): Promise<any> => {
@@ -32,35 +37,9 @@ router.get('/:id/edit', async (req, res): Promise<any> => {
 /**
  * CRUD Routes
  */
-router.post('/', async (req, res): Promise<undefined> => {
-  try {
-    const { name, email, phone } = req.body
+router.post('/', createClient)
 
-    if (!name || !email || !phone) {
-      res.status(400).send('Name, email, and phone are required fields.')
-      return
-    }
-
-    const newClient = new Client({
-      name,
-      email,
-      phone,
-    })
-
-    const result = await newClient.save()
-
-    if (result) {
-      res.status(201).redirect('/clients')
-    } else {
-      res.status(500).send('Failed to create a new client.')
-    }
-  } catch (error: any) {
-    console.error(error)
-    res.status(500).send(error.message)
-  }
-})
-
-router.get('/delete/:id', async (req, res) => {
+router.delete('/delete/:id', async (req, res) => {
   try {
     const clientId = req.params.id
 
