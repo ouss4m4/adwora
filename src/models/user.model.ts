@@ -3,6 +3,7 @@ import mongoose, { Schema, Document, Model } from 'mongoose'
 export interface IUser {
   name: string
   email: string
+  password: string
   phone?: string
   clientId: mongoose.Schema.Types.ObjectId // Reference to the Client model
 }
@@ -12,6 +13,7 @@ const UserSchema = new Schema<IUserDocument>(
   {
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
+    password: { type: String, required: true, unique: true },
     phone: { type: String },
     clientId: {
       type: mongoose.Schema.Types.ObjectId,

@@ -1,5 +1,6 @@
 import express from 'express'
 import path from 'path'
+import cookieParser from 'cookie-parser'
 import routes from './routes'
 import expressLayouts from 'express-ejs-layouts'
 import { connectToDatabase } from './db/db'
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, '../public')))
 app.use(express.json())
 
 // BODY PARSERS
+app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 // Use routes
