@@ -53,22 +53,14 @@ export const loginUser = async (req: Request, res: Response): Promise<any> => {
 
   const user = await User.findOne({ email })
 
-  if (!user) {
-    return res.status(400).send('Invalid email or password')
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    return res.render('login', {
+      title: 'Adwora',
+      errors: { root: 'Invalid Credentials' },
+      layout: false,
+    })
   }
-  console.log('------------------')
 
-  console.log(password)
-  console.log('------------------')
-  console.log(user)
-
-  let passwordMatch = await bcrypt.compare(password, user.password)
-  console.log(passwordMatch)
-  console.log('------------------')
-
-  if (!passwordMatch) {
-    return res.status(400).send('Invalid email or password')
-  }
   const token = jwt.sign({ email }, JWT_SECRET, { expiresIn: '1h' })
   res.cookie('authToken', token, { httpOnly: true })
   res.redirect('/dashboard')

@@ -16,11 +16,10 @@ export const authenticateJWT = (
   }
 
   try {
-    const user = jwt.verify(token, JWT_SECRET) as { email: string }
-    ;(req as any).user = user // Attach user details to the request object
+    jwt.verify(token, JWT_SECRET) as { email: string }
     next()
   } catch {
     res.clearCookie('authToken')
-    res.redirect('/auth/login')
+    res.redirect('/login')
   }
 }
