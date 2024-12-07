@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import User, { IUser } from '../models/user.model'
+import { createUser } from '../controllers/user/create.controller'
 
 const router = Router()
 
@@ -33,33 +34,6 @@ router.get('/:id/edit', async (req, res): Promise<any> => {
 /**
  * CRUD Routes
  */
-router.post('/', async (req, res) => {
-  try {
-    const { name, email, phone, clientId } = req.body as IUser
-
-    if (!name || !email) {
-      res.status(400).send('Name and email are required fields.')
-      return
-    }
-
-    const newUser = new User({
-      name,
-      email,
-      phone,
-      clientId,
-    })
-
-    const result = await newUser.save()
-
-    if (result) {
-      res.status(201).redirect('/users')
-    } else {
-      res.status(500).send('Failed to create a new user.')
-    }
-  } catch (error: any) {
-    console.error(error)
-    res.status(500).send(error.message)
-  }
-})
+router.post('/', createUser)
 
 export { router as userRouter }

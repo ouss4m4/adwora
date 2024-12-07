@@ -5,11 +5,11 @@ import Client from '../../models/client.model'
 export const createClient = async (
   req: Request,
   res: Response
-): Promise<any> => {
+): Promise<void> => {
   const { error, errors } = validateCreateClientRequest(req.body)
 
   if (error) {
-    // Send back a JSON response with Joi errors
+    // THE OLD() DATA + ERROR STYLE
     return res.render('clients/create', { errors, oldData: req.body })
   }
 

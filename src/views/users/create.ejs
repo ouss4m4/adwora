@@ -1,7 +1,9 @@
 <div class="flex h-full w-full flex-col items-center justify-center">
   <h1 class="my-6 text-2xl">Create User</h1>
   <div class="bg-white p-8 shadow-md">
-    <form action="/users" method="POST" class="grid grid-cols-3 gap-4">
+    <form id="createUserForm" class="grid grid-cols-3 gap-4">
+      <small class="col-span-3 text-red-500" id="formError"></small>
+
       <label class="col-span-1" for="clientId">Client ID</label>
       <input
         class="border-1 col-span-2 mb-4 w-full appearance-none rounded-md border-gray-300 px-4 py-2.5 text-sm leading-tight text-[#001C5B] shadow-sm focus:outline-none"
@@ -9,6 +11,8 @@
         id="clientId"
         name="clientId"
       />
+      <small class="col-span-3 text-red-500" id="clientIdError"></small>
+
       <label class="col-span-1" for="name">Name:</label>
       <input
         class="border-1 col-span-2 mb-4 w-full appearance-none rounded-md border-gray-300 px-4 py-2.5 text-sm leading-tight text-[#001C5B] shadow-sm focus:outline-none"
@@ -17,6 +21,7 @@
         name="name"
         required
       />
+      <small class="col-span-3 text-red-500" id="nameError"></small>
 
       <label class="col-span-1" for="email">Email:</label>
       <input
@@ -26,6 +31,7 @@
         name="email"
         required
       />
+      <small class="col-span-3 text-red-500" id="emailError"></small>
 
       <label class="col-span-1" for="phone">Phone:</label>
       <input
@@ -34,8 +40,94 @@
         id="phone"
         name="phone"
       />
+      <small class="col-span-3 text-red-500" id="phoneError"></small>
 
       <button type="submit" class="col-span-3">Create User</button>
     </form>
   </div>
 </div>
+
+<script>
+  document
+    .getElementById('createUserForm')
+    .addEventListener('submit', function (e) {
+      e.preventDefault() // Prevent form submission for validation
+      let isValid = true
+
+      // Clear previous errors
+      document.getElementById('clientIdError').innerText = ''
+      document.getElementById('nameError').innerText = ''
+      document.getElementById('emailError').innerText = ''
+      document.getElementById('phoneError').innerText = ''
+
+      // Client ID validation
+      const clientId = document.getElementById('clientId').value.trim()
+      if (!clientId) {
+        isValid = false
+        document.getElementById('clientIdError').innerText =
+          'Client ID is required.'
+      }
+
+      // Name validation
+      const name = document.getElementById('name').value.trim()
+      if (name.length < 3) {
+        isValid = false
+        document.getElementById('nameError').innerText =
+          'Name must be at least 3 characters long.'
+      } else if (name.length > 50) {
+        isValid = false
+        document.getElementById('nameError').innerText =
+          'Name must be at most 50 characters long.'
+      }
+
+      // Email validation
+      const email = document.getElementById('email').value.trim()
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (!emailRegex.test(email)) {
+        isValid = false
+        document.getElementById('emailError').innerText =
+          'Email must be a valid email address.'
+      }
+
+      // Phone validation
+      const phone = document.getElementById('phone').value.trim()
+      const phoneRegex = /^[0-9]+$/
+      if (phone && !phoneRegex.test(phone)) {
+        isValid = false
+        document.getElementById('phoneError').innerText =
+          'Phone must contain only numbers.'
+      }
+
+      // Submit form if valid
+      if (isValid) {
+        // Construct URL-encoded data
+        const formData = new URLSearchParams()
+        formData.append('clientId', clientId)
+        formData.append('name', name)
+        formData.append('email', email)
+        formData.append('phone', phone)
+
+        // Use fetch to POST data
+        fetch('/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: formData.toString(),
+        })
+          .then(res => res.json())
+          .then(response => {
+            if (response.success) {
+              window.location.href = '/users'
+            } else {
+              document.getElementById('formError').innerHTML =
+                response.message ?? JSON.stringify(response.errors)
+            }
+          })
+          .catch(error => {
+            console.log(response)
+            console.error('Error:', error)
+          })
+      }
+    })
+</script>
