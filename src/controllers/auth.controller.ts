@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { title } from 'process'
 import User from '../models/user.model'
+import { addWelcomeNewUserJob } from '../Queue/email.q'
 
 const JWT_SECRET = process.env.JWT_SECRET ?? 'your_jwt_secret_key' // Replace with a secure key
 
@@ -41,6 +42,11 @@ export const signupUser = async (req: Request, res: Response): Promise<any> => {
 
   try {
     await newUser.save()
+
+    console.log('wtfffff')
+    addWelcomeNewUserJob(newUser.email)
+    console.log('wtfffff')
+
     res.redirect('/login')
   } catch (error) {
     res.json(JSON.stringify(error))

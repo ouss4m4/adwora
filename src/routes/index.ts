@@ -10,7 +10,7 @@ const router = Router()
 router.use(authRouter) // Login route is public
 
 // Middleware to Protect Private Routes
-router.use(authenticateJWT)
+// router.use()
 
 // Protected Routes
 router.get('/', (req, res) => {

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"ts-node-dev --env-file=.env src/app.ts\" \"npm run watch:css\"",
+    "start": "concurrently \"ts-node-dev --inspect --env-file=.env src/app.ts\" \"npm run watch:css\"",
     "build:css": "tailwindcss -i ./src/styles/tailwind.css -o ./public/css/styles.css",
     "watch:css": "tailwindcss -i ./src/styles/tailwind.css -o ./public/css/styles.css --watch"
   },
@@ -12,8 +12,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@bull-board/express": "^6.5.3",
     "autoprefixer": "^10.4.20",
     "bcrypt": "^5.1.1",
+    "bullmq": "^5.33.1",
     "cookie-parser": "^1.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.1",

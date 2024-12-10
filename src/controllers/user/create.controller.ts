@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { validateCreateUserRequest } from '../../validators/user/createUser.validator'
 import Client from '../../models/client.model'
 import User from '../../models/user.model'
+import { addWelcomeNewUserJob } from '../../Queue/email.q'
 
 export const createUser = async (req: Request, res: Response): Promise<any> => {
   const { error, errors } = validateCreateUserRequest(req.body)
@@ -29,14 +30,12 @@ export const createUser = async (req: Request, res: Response): Promise<any> => {
       phone,
       clientId,
     })
-    const result = await newUser.save()
+    await newUser.save()
 
     return res.json({
       success: true,
     })
   } catch (error: any) {
-    console.log(error)
-
     return res.json({
       error: true,
       message: 'unexpected error happened',
